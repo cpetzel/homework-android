@@ -2,6 +2,15 @@
 *.apk
 *.ap_
 
+
+# IntelliJ IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+classes
+gen-external-apklibs
+
 # Files for the ART/Dalvik VM
 *.dex
 

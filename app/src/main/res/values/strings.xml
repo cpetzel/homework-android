@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Eaze Homework</string>
+    <string name="app_name">Eaze Giphy</string>
+    <string name="transition_search_back" translatable="false">transition_search_back</string>
+    <string name="search_hint">Enter Giphy Search Term</string>
+    <string name="search">Search</string>
+    <string name="share">Share</string>
+    <string name="no_search_results">No results for\n“%1$s”</string>
+    <string name="share_text">This Gif on Giphy is Rad!\\n%1$s></string>
+
 </resources>

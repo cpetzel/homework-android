@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.eazeup.eazehomework">
+<manifest package="com.eazeup.eazehomework"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application android:name=".EazeApplication"
+                 android:allowBackup="true"
+                 android:icon="@mipmap/ic_launcher"
+                 android:label="@string/app_name"
+                 android:supportsRtl="true"
+                 android:theme="@style/AppTheme">
+        <activity android:name=".ui.TrendingActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.GifViewActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:theme="@style/AppTheme"/>
+        <activity android:name=".ui.GifSearchActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize"
+                  android:theme="@style/AppTheme"/>
+        <meta-data
+            android:name="com.eazeup.eazehomework.dagger.modules.OkhttpGlideModule"
+            android:value="GlideModule"/>
     </application>
+
 
 </manifest>

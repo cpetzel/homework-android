@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.eazeup.eazehomework.ui.widget.ElasticDragDismissFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                                 android:id="@+id/elastricDragContainer"
+                                                                 android:layout_width="match_parent"
+                                                                 android:layout_height="match_parent"
+                                                                 android:background="@color/background_dark">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/detailNestedRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollFooter="@android:color/transparent"
+        android:overScrollMode="never">
+
+
+        <LinearLayout android:id="@+id/detailContainer" android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:orientation="vertical">
+            <Toolbar
+                style="@style/Widget.Plaid.HomeToolbar"
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:actionBarSize"
+                android:background="@color/background_dark"
+                android:elevation="1dp"
+                android:outlineProvider="none"
+                android:title="@string/app_name"/>
+
+            <FrameLayout android:id="@+id/tempDetailFrame" android:layout_width="match_parent"
+                         android:layout_height="wrap_content">
+                <ImageView android:id="@+id/gifDetailStatic"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:adjustViewBounds="true"/>
+                <ProgressBar style="@style/Widget.AppCompat.ProgressBar"
+                             android:id="@+id/detailProgressBar" android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_gravity="top|center_horizontal"
+                             android:indeterminate="true"
+                             android:paddingTop="4dp"/>
+
+                <pl.droidsonroids.gif.GifImageView android:id="@+id/gifDetailAnimated"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_gravity="top"
+                                                   android:adjustViewBounds="true"
+                                                   android:foregroundGravity="top"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</com.eazeup.eazehomework.ui.widget.ElasticDragDismissFrameLayout>

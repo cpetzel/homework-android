@@ -1,4 +1,4 @@
-package com.eazeup.eazehomework.dagger.modules;
+package com.eazeup.eazehomework.di.modules;
 
 import android.app.Application;
 
@@ -23,7 +23,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.eazeup.eazehomework.dagger.modules.GiphyModule.NAMED_GIPHY_KEY;
+import static com.eazeup.eazehomework.di.modules.GiphyModule.NAMED_GIPHY_KEY;
 
 @Module
 public class NetModule {

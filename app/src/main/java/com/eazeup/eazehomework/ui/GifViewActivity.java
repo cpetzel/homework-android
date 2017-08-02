@@ -99,8 +99,14 @@ public class GifViewActivity extends Activity {
 
         setupTransition();
 
+        //Transition will start once the preview image is loaded (should be cached)
+        loadStaticGifPreview();
+
     }
 
+    /**
+     * When the Activity Transition is over, then start the loading of the larger Gif
+     */
     void setupTransition() {
         Transition sharedElementEnterTransition = getWindow().getSharedElementEnterTransition();
         sharedElementEnterTransition.addListener(new TransitionEndListener() {
@@ -111,39 +117,15 @@ public class GifViewActivity extends Activity {
                 transitionEndTime = System.currentTimeMillis();
 
                 mProgressBar.setVisibility(View.VISIBLE);
-                Glide.with(getApplicationContext()).asGif().load(mGif.getDownsizeMediumGifUrl()).listener(new RequestListener<GifDrawable>() {
-
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean
-                        isFirstResource) {
-                        Toast.makeText(GifViewActivity.this, "Error loading Gif. Please try again later", Toast.LENGTH_LONG)
-                            .show();
-                        finishAfterTransition();
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource
-                        dataSource, boolean isFirstResource) {
-                        Log.d(TAG, "main gif loaded from " + dataSource);
-
-                        //reset the transition for the pop
-                        mGifImageView.setTransitionName(mGif.getId());
-
-                        long loadDiff = System.currentTimeMillis() - transitionEndTime;
-                        if (loadDiff < DISPLAY_THRESHOLD) {
-                            long timeToWait = DISPLAY_THRESHOLD - loadDiff;
-                            Log.d(TAG, "gif loaded too fast. Will wait to swap views after this many seconds : " + timeToWait);
-                            mGifImageView.postDelayed(gifLoadedRunnable, timeToWait);
-                        } else {
-                            mGifImageView.post(gifLoadedRunnable);
-                        }
-                        return false;
-                    }
-                }).into(mGifImageView);
+                loadFullSizeGif();
             }
         });
+    }
 
+    /**
+     * Load the small preview image, and then start the transition when it is finished loading
+     */
+    private void loadStaticGifPreview() {
         //first load the preview image
         final RequestOptions staticOption = new RequestOptions().dontAnimate();
         Glide.with(getApplicationContext()).asBitmap().apply(staticOption).load(mGif.getImageUrlSmall()).listener(new RequestListener<Bitmap>() {
@@ -163,6 +145,41 @@ public class GifViewActivity extends Activity {
                 return false;
             }
         }).into(mStaticImageView);
+    }
+
+    /**
+     * Load the main Gif
+     */
+    void loadFullSizeGif() {
+        Glide.with(getApplicationContext()).asGif().load(mGif.getDownsizeMediumGifUrl()).listener(new RequestListener<GifDrawable>() {
+
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean
+                isFirstResource) {
+                Toast.makeText(GifViewActivity.this, "Error loading Gif. Please try again later", Toast.LENGTH_LONG).show();
+                finishAfterTransition();
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource
+                dataSource, boolean isFirstResource) {
+                Log.d(TAG, "main gif loaded from " + dataSource);
+
+                //reset the transition for the pop
+                mGifImageView.setTransitionName(mGif.getId());
+
+                long loadDiff = System.currentTimeMillis() - transitionEndTime;
+                if (loadDiff < DISPLAY_THRESHOLD) {
+                    long timeToWait = DISPLAY_THRESHOLD - loadDiff;
+                    Log.d(TAG, "gif loaded too fast. Will wait to swap views after this many seconds : " + timeToWait);
+                    mGifImageView.postDelayed(gifLoadedRunnable, timeToWait);
+                } else {
+                    mGifImageView.post(gifLoadedRunnable);
+                }
+                return false;
+            }
+        }).into(mGifImageView);
     }
 
     /**

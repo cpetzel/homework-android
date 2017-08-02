@@ -1,4 +1,4 @@
-package com.eazeup.eazehomework.dagger.modules;
+package com.eazeup.eazehomework.di.modules;
 
 import com.eazeup.eazehomework.api.GiphyApiInteface;
 import com.eazeup.eazehomework.api.NetworkManager;

@@ -2,11 +2,11 @@ package com.eazeup.eazehomework;
 
 import android.app.Application;
 
-import com.eazeup.eazehomework.dagger.components.CoreComponent;
-import com.eazeup.eazehomework.dagger.components.DaggerCoreComponent;
-import com.eazeup.eazehomework.dagger.modules.AppModule;
-import com.eazeup.eazehomework.dagger.modules.GiphyModule;
-import com.eazeup.eazehomework.dagger.modules.NetModule;
+import com.eazeup.eazehomework.di.components.CoreComponent;
+import com.eazeup.eazehomework.di.components.DaggerCoreComponent;
+import com.eazeup.eazehomework.di.modules.AppModule;
+import com.eazeup.eazehomework.di.modules.GiphyModule;
+import com.eazeup.eazehomework.di.modules.NetModule;
 import com.facebook.stetho.Stetho;
 
 public class EazeApplication extends Application {

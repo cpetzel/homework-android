@@ -24,7 +24,7 @@
                   android:configChanges="orientation|keyboardHidden|screenSize"
                   android:theme="@style/AppTheme"/>
         <meta-data
-            android:name="com.eazeup.eazehomework.dagger.modules.OkhttpGlideModule"
+            android:name="com.eazeup.eazehomework.di.modules.OkhttpGlideModule"
             android:value="GlideModule"/>
     </application>
 

@@ -1,4 +1,4 @@
-package com.eazeup.eazehomework.dagger.modules;
+package com.eazeup.eazehomework.di.modules;
 
 import java.io.InputStream;
 
